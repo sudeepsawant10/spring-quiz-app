@@ -15,6 +15,7 @@ public class QuestionController {
     //localhost:8080/question/allQuestions
     @Autowired
     QuestionService questionService;
+
     @GetMapping("allQuestions")
     public List<Question> getAllQuestions(){
         return questionService.getAllQuestions();
