@@ -19,13 +19,19 @@ public class QuizService {
     QuestionDao questionDao;
     public ResponseEntity<String> createQuiz(String category, int numQ, String quizTitle) {
         //Get random questions by category
-        List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
 
-        Quiz quiz = new Quiz();
-        quiz.setQuizTitle(quizTitle);
-        // Get from db and set
-        quiz.setQuestions(questions);
-        quizDao.save(quiz);
-        return new ResponseEntity<>("Success", HttpStatus.OK);
+        try{
+            List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
+            Quiz quiz = new Quiz();
+            quiz.setQuizTitle(quizTitle);
+            // Get from db and set
+            quiz.setQuestions(questions);
+            quizDao.save(quiz);
+            return new ResponseEntity<>("Success", HttpStatus.OK);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>("Failed to create quiz!", HttpStatus.BAD_REQUEST);
+
     }
 }

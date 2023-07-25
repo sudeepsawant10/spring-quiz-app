@@ -13,7 +13,7 @@ public class Quiz{
     //Two different quiz can have same questions that's why ManyToMany Relationship
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     private String quizTitle;
 
